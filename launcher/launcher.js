@@ -8,7 +8,7 @@ function Launcher(opts) {
     fillValvePin: 2,
     launchValvePin: 3,
     dataInterval: 200,
-    maxPsi: 50,
+    maxPsi: 150,
     holdAfterLaunch: 2000,
     pressure: {
         slope: 0.5479,
