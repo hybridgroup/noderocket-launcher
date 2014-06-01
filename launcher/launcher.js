@@ -123,4 +123,8 @@ Launcher.prototype.launch = function() {
   }, thiz.config.holdAfterLaunch);
 };
 
+Launcher.prototype.getPressure = function () {
+    return this.currentPsi;
+}
+
 module.exports = Launcher;

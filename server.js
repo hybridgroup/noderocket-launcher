@@ -7,11 +7,37 @@ var j5 = require("johnny-five");
 var Launcher = require('./launcher/launcher');
 
 app.use(express.static('www'));
+app.use(express.bodyParser());
 
 server.listen(8082);
 
 app.get('/', function (req, res) {
     res.sendfile(__dirname + '/index.html');
+});
+
+app.get('/openFill', function (req, res) {
+    l1.openFill();
+    res.send(200);
+});
+
+app.get('/closeFill', function (req, res) {
+    l1.closeFill();
+    res.send(200);
+});
+
+app.get('/launch', function (req, res) {
+    l1.launch();
+    res.send(200);
+});
+
+app.get('/pressure', function (req, res) {
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify({ pressure: l1.getPressure() }));
+});
+
+app.post('/fillTo', function (req, res) {
+    console.log("Filling To: " + JSON.stringify(req.body));
+    l1.fillTo(req.body.pressure, false);
 });
 
 var board = new j5.Board();
